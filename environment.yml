@@ -1,0 +1,22 @@
+name: immune-response-nanoplastic
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - matplotlib-venn
+  - seaborn
+  - scanpy
+  - anndata
+  - statsmodels
+  - harmonypy==0.0.10
+  - leidenalg
+  - pip:
+      - panhumanpy
+      - gseapy
+      - igraph

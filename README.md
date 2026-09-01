@@ -1,44 +1,47 @@
-# Projekat iz predmeta Genomska informatika
+# Single-Cell Analysis of Immune Response to Nanoplastic Particles
 
-### Single-Cell Analysis of Immune Response to Nanoplastic Particles
-Nanoplastics that enter the bloodstream interact directly with immune cells, and particle size appears to shape the response. You will use single-cell RNA sequencing (scRNA-seq)to investigate how nanoplastics of different sizes affect human peripheral blood immune cells.
+### Dataset Description
 
-#### Dataset
-Source: https://zenodo.org/records/15866724 (DOI:10.5281/zenodo.15866724)
+**Source:** [Zenodo](https://zenodo.org/records/15866724) (DOI:10.5281/zenodo.15866724)
 
-Four samples from one donor, exposed to carboxylated polystyrene nanoparticles (PSNPs):
-● Sample 1, 40 nm PSNPs
-● Sample 2, 200 nm PSNPs
-● Sample 3, 40 nm + 200 nm mixture
-● Sample 4, control (no exposure)
+Use the .h5ad files (AnnData format)
 
-Use the .h5ad files (AnnData format). The *_CoDi_KLD.csv files are used as a reference for
-potential comparison with the obtained results.
+**Samples:**
 
-#### Tasks
-1. QC & preprocessing — filter cells, normalise, select variable genes. Justify thresholds.
-2. Integration & clustering - combine all four samples with a batch-correction method of
-your choice; compute UMAP and clusters.
-3. Cell type annotation - assign immune cell types (T, B, NK, monocytes, etc.) using
-marker genes and the Azimuth PBMC reference (RDS) dataset.
-4. Composition analysis - compare cell type proportions across the four samples.
-5. Differential expression - for each major cell type, compare each exposed sample
-against the control; run pathway enrichment (GO/Reactome/KEGG).
-6. Size-specific effects - identify responses that are unique to 40 nm, unique to 200 nm,
-shared, or emerge only in the mixture. Interpret biologically.
+- **Sample 1:** 40 nm carboxylated polystyrene nanoparticles (PSNPs)
+- **Sample 2:** 200 nm PSNPs
+- **Sample 3:** 40 nm + 200 nm mixture
+- **Sample 4:** Control (no exposure)
 
-#### Deliverables
-● Github Code repository with an environment file and a README explaining how to
-reproduce results (20 points).
-● Propose and implement 3-5 additional insights or analyses to the dataset (10 points)
-● PowerPoint slides explaining all the results with visualisations (also saved on GitHub)
-(10 points)
-● Video presentation (5-10 minutes) of the results uploaded to YouTube or other video
-platform (20 points)
+## Analysis Workflow
 
-#### Installing pre-commit
+1. **QC & Preprocessing**: Load data, calculate QC metrics, filter cells/genes, normalize
+2. **Integration & Clustering**: Merge samples, batch correction, PCA, UMAP, clustering
+3. **Cell Type Annotation**: Identify cell types using marker genes
+4. **Composition Analysis**: Compare cell type proportions across samples
+5. **Differential Expression**: Find genes differentially expressed between conditions
+6. **Size-Specific Effects**: Analyze particle size-specific responses
+
+## Reproducing the environment
+
+From the project root:
 
 ```bash
-pip install pre-commit==2.13
-pre-commit install
+conda env create -f environment.yml
+conda activate immune-response-nanoplastic
 ```
+
+## Running the analysis
+
+From the project folder:
+
+Run **project.ipynb**
+
+This script generates plots interactively and prints QC summaries, PCA diagnostics, cluster statistics, and marker-gene analysis output.
+
+## Project structure
+
+- project.ipynb: main analysis pipeline
+- [requirements.txt](requirements.txt): pip dependencies
+- [environment.yml](environment.yml): conda environment definition
+- [data](data): input AnnData files
